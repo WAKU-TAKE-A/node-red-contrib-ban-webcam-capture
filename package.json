@@ -1,0 +1,21 @@
+{
+    "name": "node-red-contrib-ban-webcam-capture",
+    "version": "0.9.2",
+    "description": "Node-RED node for capturing images from a webcam. It's for practice",
+    "dependencies": {
+        "node-webcam": "^0.6.0"
+    },
+    "keywords": [
+        "node-red",
+        "webcam",
+        "capture",
+        "image"
+    ],
+    "node-red": {
+        "nodes": {
+            "ban-webcam-capture": "webcam-capture.js"
+        }
+    },
+    "author": "WAKU-TAKE-A",
+    "license": "MIT"
+}
