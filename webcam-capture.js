@@ -22,6 +22,8 @@ module.exports = function (RED) {
       // キャプチャを実行
       webcam.capture("temp", function (err, data) {
         if (err) {
+          msg.payload = null;
+          node.send(msg);
           node.error("Error capturing image: " + err, msg);
           return;
         }
