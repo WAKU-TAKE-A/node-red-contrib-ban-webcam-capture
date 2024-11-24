@@ -11,10 +11,14 @@ module.exports = function (RED) {
       // 初回のみカメラのインスタンスを作成
       if (!webcam) {
         const camOptions = {
-          width: msg.width || 640,
-          height: msg.height || 480,
-          device: msg.id || "",
-          callbackReturn: "buffer"  // バイナリで取得
+          width: msg.width || 640,             // 幅
+          height: msg.height || 480,           // 高さ
+          device: msg.id || "",                // デバイスID
+          callbackReturn: msg.callbackReturn || "buffer",  // コールバック戻り値形式
+          quality: msg.quality || 90,           // 画質（デフォルト: 90）
+          frames: msg.frames || 30,            // フレームレート（デフォルト: 30）
+          delay: msg.delay || 0,               // ディレイ（デフォルト: 0）
+          output: msg.output || "jpeg"         // 出力形式（デフォルト: jpeg）
         };
         webcam = NodeWebcam.create(camOptions);
       }
@@ -23,11 +27,12 @@ module.exports = function (RED) {
       webcam.capture("temp", function (err, data) {
         if (err) {
           msg.payload = null;
+          msg.error = "Error capturing image: " + err;
           node.send(msg);
-          node.error("Error capturing image: " + err, msg);
           return;
         }
-        msg.payload = data; // バイナリデータを出力
+        msg.payload = data;
+        msg.error = null;
         node.send(msg);
       });
     });

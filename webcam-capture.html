@@ -1,23 +1,48 @@
 <script type="text/javascript">
-    RED.nodes.registerType("webcam-capture", {
-      category: "WAKU",
-      color: "#C7E9C0",
-      defaults: {
-        name: { value: "" }
-      },
-      inputs: 1,
-      outputs: 1,
-      icon: "camera.png",
-      label: function () {
-        return this.name || "webcam capture";
-      }
-    });
-  </script>
-  
-  <div class="form-row">
-    <label for="node-input-name">
-      <i class="fa fa-tag"></i> Name
-    </label>
-    <input type="text" id="node-input-name" placeholder="Node name">
-  </div>
-  
+  RED.nodes.registerType("webcam-capture", {
+    category: "BAN",
+    color: "#C7E9C0",
+    defaults: {
+      name: { value: "" }
+    },
+    inputs: 1,
+    outputs: 1,
+    icon: "camera.png",
+    label: function () {
+      return this.name || "Webcam Capture";
+    }
+  });
+</script>
+
+<div class="form-row">
+  <label for="node-input-name">
+    <i class="fa fa-tag"></i> Name
+  </label>
+  <input type="text" id="node-input-name" placeholder="Node name">
+</div>
+
+<script type="text/html" data-help-name="webcam-capture">
+  <h3>Webcam Capture</h3>
+  <p>
+      このノードはWebカメラを使用して画像をキャプチャします。画像は<code>msg.payload</code>として出力されます。
+  </p>
+
+  <h4>入力メッセージ</h4>
+  <ul>
+      <li><code>msg.width</code> (オプション): キャプチャ画像の幅（デフォルト: 640）</li>
+      <li><code>msg.height</code> (オプション): キャプチャ画像の高さ（デフォルト: 480）</li>
+      <li><code>msg.id</code> (オプション): WebカメラのデバイスID（デフォルト: 空文字列）</li>
+      <li><code>msg.callbackReturn</code> (オプション): コールバックの戻り値形式（デフォルト: "buffer"）</li>
+      <li><code>msg.quality</code> (オプション): 画像の画質（1〜100、デフォルト: 90）</li>
+      <li><code>msg.frames</code> (オプション): フレームレート（デフォルト: 30）</li>
+      <li><code>msg.delay</code> (オプション): キャプチャの遅延（ms、デフォルト: 0）</li>
+      <li><code>msg.output</code> (オプション): 出力形式（例: "jpeg"、デフォルト: "jpeg"）</li>
+  </ul>
+
+  <h4>出力メッセージ</h4>
+  <ul>
+      <li><code>msg.payload</code>: キャプチャされた画像データ。</li>
+      <li><code>msg.error</code>: エラーメッセージ（エラーが発生した場合に設定されます）。</li>
+  </ul>
+</script>
+
