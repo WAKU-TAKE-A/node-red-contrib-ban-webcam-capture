@@ -1,9 +1,9 @@
 {
     "name": "node-red-contrib-ban-webcam-capture",
-    "version": "0.9.9",
-    "description": "Node-RED node for capturing images from a webcam. It's for practice",
+    "version": "0.9.10",
+    "description": "Node-RED node for capturing images from a webcam.",
     "dependencies": {
-        "node-red-contrib-ban-webcam-capture": "^0.9.8",
+        "node-red-contrib-ban-webcam-capture": "^0.9.10",
         "node-webcam": "^0.6.0"
     },
     "keywords": [

@@ -5,25 +5,25 @@ module.exports = function (RED) {
     RED.nodes.createNode(this, config);
     const node = this;
 
-    let webcam = null;  // 初期化時にカメラを一度だけ作成
+    let webcam = null; // Create the camera instance only once during initialization
 
     node.on("input", function (msg) {
-      // 初回のみカメラのインスタンスを作成
+      // Create the webcam instance on the first input
       if (!webcam) {
         const camOptions = {
-          width: msg.width || 640,             // 幅
-          height: msg.height || 480,           // 高さ
-          device: msg.id || "",                // デバイスID
-          callbackReturn: msg.callbackReturn || "buffer",  // コールバック戻り値形式
-          quality: msg.quality || 90,           // 画質（デフォルト: 90）
-          frames: msg.frames || 30,            // フレームレート（デフォルト: 30）
-          delay: msg.delay || 0,               // ディレイ（デフォルト: 0）
-          output: msg.output || "jpeg"         // 出力形式（デフォルト: jpeg）
+          width: msg.width || 640,             // Width
+          height: msg.height || 480,           // Height
+          device: msg.id || "",                // Device ID
+          callbackReturn: msg.callbackReturn || "buffer",  // Callback return type (default: buffer)
+          quality: msg.quality || 90,          // Image quality (default: 90)
+          frames: msg.frames || 30,            // Frame rate (default: 30)
+          delay: msg.delay || 0,               // Delay (default: 0)
+          output: msg.output || "jpeg"         // Output format (default: jpeg)
         };
         webcam = NodeWebcam.create(camOptions);
       }
 
-      // キャプチャを実行
+      // Perform the capture
       webcam.capture("temp", function (err, data) {
         if (err) {
           msg.payload = null;

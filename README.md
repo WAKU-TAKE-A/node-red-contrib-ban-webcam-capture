@@ -1,5 +1,5 @@
 # node-red-contrib-ban-webcam-capture
 
-Node-RED node for capturing images from a webcam. 
+This Node-RED node is designed for capturing images from a webcam.
 
-I am using chuckfairy's node-webcam.
+It utilizes the "node-webcam" module created by chuckfairy.
